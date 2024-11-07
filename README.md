@@ -8,11 +8,9 @@ An automated Python tool for generating personalized certificates from Excel dat
 ## 🌟 Features
 
 - Bulk certificate generation from Excel spreadsheets
-- Customizable certificate templates
 - PDF output format
 - Configurable text styles and positioning
 - Font customization with support for Roboto Mono variants
-- Detailed logging system
 - Error handling and validation
 
 ## 📋 Prerequisites
