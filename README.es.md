@@ -7,11 +7,9 @@ Una herramienta automatizada en Python para generar certificados personalizados 
 ## 🌟 Características
 
 - Generación masiva de certificados desde hojas de Excel
-- Plantillas de certificados personalizables
 - Formato de salida en PDF
 - Estilos y posicionamiento de texto configurables
 - Personalización de fuentes con soporte para variantes de Roboto Mono
-- Sistema detallado de registro de eventos
 - Manejo y validación de errores
 
 ## 📋 Prerequisitos
