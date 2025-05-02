@@ -24,19 +24,27 @@ class GeneradorCertificados:
          # Configuración de estilos de texto con espaciado
         self.estilos = {
             'nombre': {
-                'fuente': 'RobotoMono-Bold.ttf',
-                'tamanno': 50,
+                'fuente': 'RobotoMono-Regular.ttf',
+                'tamanno': 70,
                 'color': '#280384',
-                'posicion_y': 250,
-                'espaciado': -3  # Espaciado negativo para juntar las letras
+                'posicion_y': 320,
+                'espaciado': -1  # Espaciado negativo para juntar las letras
             },
             'identificacion': {
-                'fuente': 'RobotoMono-Bold.ttf',
-                'tamanno': 39,
+                'fuente': 'RobotoMono-Light.ttf',
+                'tamanno': 30,
                 'color': '#280384',
-                'posicion_y': 342,
-                'posicion_x': 610,
-                'espaciado': -3  # Espaciado negativo para juntar las letras
+                'posicion_y': 410,
+                #'posicion_x': 610,
+                'espaciado': 0  # Espaciado negativo para juntar las letras
+            },
+            'codigo':{
+                'fuente': 'RobotoMono-Medium.ttf',
+                'tamanno': 19,
+                'color': '#280384',
+                'posicion_y': 80,
+                'posicion_x': 90,
+                'espaciado': 0  # Espaciado negativo para juntar las letras
             }
         }
         
@@ -151,7 +159,7 @@ class GeneradorCertificados:
             self.estilos[elemento]['espaciado'] = espaciado
             logging.info(f'Espaciado de {elemento} ajustado a {espaciado}px')
             
-    def generar_certificado(self, nombre, identificacion):
+    def generar_certificado(self, nombre, identificacion, codigo):
         """
         Genera un certificado individual.
         
@@ -172,7 +180,10 @@ class GeneradorCertificados:
             self.dibujar_texto(draw, nombre, self.estilos['nombre'], width)
             
             # Dibujar identificación (posición específica)
-            self.dibujar_texto(draw, identificacion, self.estilos['identificacion'], width, centrado=False)
+            self.dibujar_texto(draw, identificacion, self.estilos['identificacion'], width)
+            
+            # Dibujar identificación (posición específica)
+            self.dibujar_texto(draw, codigo, self.estilos['codigo'], width, centrado=False)
             
             # Guardar como imagen
             ruta_imagen = os.path.join(self.carpeta_salida, f'{nombre_archivo}.png')
@@ -223,7 +234,8 @@ class GeneradorCertificados:
                 try:
                     self.generar_certificado(
                         nombre=row['nombre_completo'],
-                        identificacion=str(row['identificacion'])
+                        identificacion=str(row['tipo_identificacion'])+': ' + format(int(row['identificacion']), ',').replace(',', '.'),
+                        codigo=str(row['codigo_certificado'])
                     )
                     generados += 1
                 except Exception as e:
